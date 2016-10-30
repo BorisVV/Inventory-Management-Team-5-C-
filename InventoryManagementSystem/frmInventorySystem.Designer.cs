@@ -37,7 +37,12 @@
             this.txtPublisher = new System.Windows.Forms.TextBox();
             this.btnAddInventory = new System.Windows.Forms.Button();
             this.lstSummary = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBookTitleSearch = new System.Windows.Forms.Button();
+            this.txtBookSearch = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtAuthorSearch = new System.Windows.Forms.TextBox();
+            this.btnSearchAuthor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -103,10 +108,10 @@
             // 
             // btnAddInventory
             // 
-            this.btnAddInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddInventory.Location = new System.Drawing.Point(19, 167);
             this.btnAddInventory.Name = "btnAddInventory";
-            this.btnAddInventory.Size = new System.Drawing.Size(125, 23);
+            this.btnAddInventory.Size = new System.Drawing.Size(125, 28);
             this.btnAddInventory.TabIndex = 8;
             this.btnAddInventory.Text = "Add Inventory";
             this.btnAddInventory.UseVisualStyleBackColor = true;
@@ -115,27 +120,78 @@
             // lstSummary
             // 
             this.lstSummary.FormattingEnabled = true;
-            this.lstSummary.Location = new System.Drawing.Point(267, 38);
+            this.lstSummary.Location = new System.Drawing.Point(254, 38);
             this.lstSummary.Name = "lstSummary";
             this.lstSummary.Size = new System.Drawing.Size(232, 173);
             this.lstSummary.TabIndex = 9;
             // 
-            // button1
+            // btnBookTitleSearch
             // 
-            this.button1.Location = new System.Drawing.Point(319, 243);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBookTitleSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBookTitleSearch.Location = new System.Drawing.Point(542, 87);
+            this.btnBookTitleSearch.Name = "btnBookTitleSearch";
+            this.btnBookTitleSearch.Size = new System.Drawing.Size(122, 28);
+            this.btnBookTitleSearch.TabIndex = 11;
+            this.btnBookTitleSearch.Text = "Search";
+            this.btnBookTitleSearch.UseVisualStyleBackColor = true;
+            this.btnBookTitleSearch.Click += new System.EventHandler(this.btnBookTitleSearch_Click);
+            // 
+            // txtBookSearch
+            // 
+            this.txtBookSearch.Location = new System.Drawing.Point(542, 61);
+            this.txtBookSearch.Name = "txtBookSearch";
+            this.txtBookSearch.Size = new System.Drawing.Size(122, 20);
+            this.txtBookSearch.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(538, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 20);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Search Book Title";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(538, 136);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Search Author ";
+            // 
+            // txtAuthorSearch
+            // 
+            this.txtAuthorSearch.Location = new System.Drawing.Point(542, 159);
+            this.txtAuthorSearch.Name = "txtAuthorSearch";
+            this.txtAuthorSearch.Size = new System.Drawing.Size(122, 20);
+            this.txtAuthorSearch.TabIndex = 15;
+            // 
+            // btnSearchAuthor
+            // 
+            this.btnSearchAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchAuthor.Location = new System.Drawing.Point(542, 185);
+            this.btnSearchAuthor.Name = "btnSearchAuthor";
+            this.btnSearchAuthor.Size = new System.Drawing.Size(122, 28);
+            this.btnSearchAuthor.TabIndex = 11;
+            this.btnSearchAuthor.Text = "Search";
+            this.btnSearchAuthor.UseVisualStyleBackColor = true;
+            this.btnSearchAuthor.Click += new System.EventHandler(this.btnSearchAuthor_Click);
             // 
             // frmInventorySystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 285);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(705, 285);
+            this.Controls.Add(this.txtAuthorSearch);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtBookSearch);
+            this.Controls.Add(this.btnSearchAuthor);
+            this.Controls.Add(this.btnBookTitleSearch);
             this.Controls.Add(this.lstSummary);
             this.Controls.Add(this.btnAddInventory);
             this.Controls.Add(this.txtPublisher);
@@ -163,7 +219,12 @@
         private System.Windows.Forms.TextBox txtPublisher;
         private System.Windows.Forms.Button btnAddInventory;
         private System.Windows.Forms.ListBox lstSummary;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBookTitleSearch;
+        private System.Windows.Forms.TextBox txtBookSearch;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAuthorSearch;
+        private System.Windows.Forms.Button btnSearchAuthor;
     }
 }
 

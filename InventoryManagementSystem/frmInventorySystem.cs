@@ -28,9 +28,13 @@ namespace InventoryManagementSystem
             inventories.AddInventories(txtBookTitle.Text, txtAuthor.Text, txtPublisher.Text);
 
             List<InventoryItems> items = inventories.getListsItems();
-                      
+            if (lstSummary.Items.Count > 0)
+            {
+                lstSummary.Items.Clear();
+            }
             foreach (InventoryItems item in items)
             {
+
                 lstSummary.Items.Add("Item successfully Added to Inventory");
                 lstSummary.Items.Add("");
                 lstSummary.Items.Add(label2.Text + " " + item.getbookTitle());
@@ -41,35 +45,76 @@ namespace InventoryManagementSystem
 
 
             }
+            clearControls();
+        }
+        public void clearControls()
+        {
+            txtAuthor.Text = "";
+            txtBookTitle.Text = "";
+            txtPublisher.Text = "";
+            txtBookTitle.Focus();
+            
 
         }
 
-        
+
+
+
         //An action handler that search and retrieves the author name along with the book from the inventories
 
         private void btnSearchAuthor_Click(object sender, EventArgs e)
         {
-            InventoryItems itemFound = inventories.searchItems(txtAuthorSearch.Text);
-            lstSummary.Items.Add(itemFound.getbookTitle());
-            lstSummary.Items.Add(itemFound.GetAuthorName());
-            lstSummary.Items.Add(itemFound.getPubisher());
-           
+            InventoryItems itemFound = inventories.searchAuthor(txtAuthorSearch.Text);
+            if (txtAuthorSearch.Text == "")
+            {
+                MessageBox.Show("You haven't added any inventories, os you can't search anything", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (itemFound == null && txtAuthorSearch.Text != null)
+            {
+                MessageBox.Show(txtAuthorSearch.Text + " is not in inventory", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+                lstSearchItems.Items.Add(label2.Text + itemFound.getbookTitle());
+                lstSearchItems.Items.Add(label3.Text + itemFound.GetAuthorName());
+                lstSearchItems.Items.Add(label4.Text + itemFound.getPubisher());
+                lstSearchItems.Items.Add("");
+                lstSearchItems.Items.Add("************************************");
+               
+            }
+            txtAuthorSearch.Clear();
+            txtAuthorSearch.Focus();
         }
-        
+
         //An action handler that search the book title added by the user to  the inventoris        
         private void btnBookTitleSearch_Click(object sender, EventArgs e)
         {
-            InventoryItems itemFound = inventories.searchItems(txtBookSearch.Text);
-            if(itemFound == null)
+            InventoryItems itemFound = inventories.searchBookTitel(txtBookSearch.Text);
+            if(txtBookSearch.Text == "")
             {
-                MessageBox.Show(txtAuthorSearch.Text + " is not in inventories", "Information", MessageBoxButtons.OK);
+                MessageBox.Show("You haven't added anything, so you can't search anything", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            lstSummary.Items.Add(itemFound.getbookTitle());
-            lstSummary.Items.Add(itemFound.GetAuthorName());
-            lstSummary.Items.Add(itemFound.getPubisher());
+          else if(itemFound == null && txtBookSearch != null)
+            {
+                MessageBox.Show(txtBookSearch.Text + " is not in inventories", "Information", MessageBoxButtons.OK);
+            }
+            else
+            {
+                lstSearchItems.Items.Add(label2.Text + itemFound.getbookTitle());
+                lstSearchItems.Items.Add(label3.Text + itemFound.GetAuthorName());
+                lstSearchItems.Items.Add(label4.Text + itemFound.getPubisher());
+                lstSearchItems.Items.Add("");
+                lstSearchItems.Items.Add("**********************************");
+            }
+            txtBookSearch.Clear();
+            txtBookSearch.Focus();
+                     
         }
     }
-    }
+   }
 //Inventories Class that holds the book name, author name and publisher name of the inventories
     class InventoryItems
     {
@@ -98,7 +143,7 @@ namespace InventoryManagementSystem
         }
     
         // A method that search and return book in the inventory
-        public InventoryItems searchItems(String name)
+        public InventoryItems searchBookTitel(String name)
         {
             for(int i=0; i<this.inventories.Count; i++)
             {
@@ -111,8 +156,22 @@ namespace InventoryManagementSystem
             }
             return null;
         }
+
+    public InventoryItems searchAuthor(String name)
+    {
+        for (int i = 0; i < this.inventories.Count; i++)
+        {
+            InventoryItems itemFound = this.inventories[i];
+            if (itemFound.GetAuthorName().Equals(name))
+            {
+                return this.inventories[i];
+            }
+
+        }
+        return null;
+    }
     //A method that gets the name  of the book enter by the user
-        public String getbookTitle()
+    public String getbookTitle()
         {
             return this.bookTitle;
         }
